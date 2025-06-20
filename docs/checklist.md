@@ -9,36 +9,36 @@ Este checklist detalha o passo a passo para iniciar e desenvolver o projeto Text
 - [x] Mapear fluxos de análise de texto e processamento NLP
 
 ## 2. Configuração do Ambiente
-- [ ] Instalar Python
-- [ ] Instalar FastAPI
-- [ ] Instalar PostgreSQL
-- [ ] Instalar Redis
-- [ ] Instalar Git
-- [ ] Configurar ambiente virtual (venv)
-- [ ] Instalar dependências do projeto
+- [x] Instalar Python
+- [x] Instalar FastAPI
+- [x] Instalar PostgreSQL
+- [x] Instalar Redis
+- [x] Instalar Git
+- [x] Configurar ambiente virtual (venv)
+- [x] Instalar dependências do projeto
 
 ## 3. Estruturação do Projeto
-- [ ] Criar estrutura de diretórios conforme o README
-- [ ] Inicializar repositório Git
-- [ ] Criar arquivos iniciais (main.py, requirements.txt, etc)
+- [x] Criar estrutura de diretórios conforme o README
+- [x] Inicializar repositório Git
+- [x] Criar arquivos iniciais (main.py, requirements.txt, etc)
 
 ## 4. Configuração de Banco de Dados e Cache
-- [ ] Criar banco de dados PostgreSQL
-- [ ] Configurar usuário e permissões
-- [ ] Criar script de inicialização do banco (init.sql)
-- [ ] Iniciar servidor Redis
+- [x] Criar banco de dados PostgreSQL
+- [x] Configurar usuário e permissões
+- [x] Criar script de inicialização do banco (init.sql)
+- [x] Iniciar servidor Redis
 
 ## 5. Desenvolvimento do Back-end
-- [ ] Implementar autenticação (OAuth2/JWT)
-- [ ] Criar endpoints para análise de sentimentos
-- [ ] Criar endpoints para geração de resumos
-- [ ] Implementar classificação de texto
-- [ ] Integrar modelos pré-treinados (SpaCy, Transformers)
+- [x] Implementar autenticação (OAuth2/JWT)
+- [x] Criar endpoints para análise de sentimentos
+- [x] Criar endpoints para geração de resumos
+- [x] Implementar classificação de texto
+- [x] Integrar modelos pré-treinados (SpaCy, Transformers)
 
 ## 6. Testes e Otimizações
-- [ ] Implementar caching com Redis
-- [ ] Criar testes unitários e de integração (Pytest)
-- [ ] Realizar testes de carga/performance
+- [x] Implementar caching com Redis
+- [x] Criar testes unitários e de integração (Pytest)
+- [x] Realizar testes de carga/performance
 
 ## 7. Deploy e Integração
 - [ ] Configurar CI/CD

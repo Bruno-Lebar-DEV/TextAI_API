@@ -1,7 +1,7 @@
 # TextAI_API 🤖📝  
 
 ## 📌 Visão Geral  
-O **TextAI_API** é uma **API especializada em processamento de textos**, capaz de **analisar sentimentos e gerar resumos automáticos**, utilizando técnicas avançadas de **Natural Language Processing (NLP)**. O projeto foca na **escalabilidade**, **segurança** e **eficiência** na manipulação de linguagem, proporcionando insights valiosos a partir de textos.  
+O **TextAI_API** é uma **API especializada em processamento de textos**, capaz de **analisar sentimentos, gerar resumos automáticos e classificar textos**, utilizando técnicas avançadas de **Natural Language Processing (NLP)**. O projeto foca na **escalabilidade**, **segurança** e **eficiência** na manipulação de linguagem, proporcionando insights valiosos a partir de textos.  
 
 ---
 
@@ -12,6 +12,7 @@ O **TextAI_API** é uma **API especializada em processamento de textos**, capaz 
 ✔️ **Autenticação Segura:** Proteção com **OAuth2** ou **JWT**.  
 ✔️ **Caching e Otimização:** Uso de **Redis** para armazenamento temporário eficiente.  
 ✔️ **Testes Automatizados:** Garantia de estabilidade com **Pytest**.  
+✔️ **Histórico de Análises:** Consulta dos resultados anteriores por usuário.  
 
 ---
 
@@ -31,7 +32,7 @@ O **TextAI_API** é uma **API especializada em processamento de textos**, capaz 
 
 ### *🛠️ Testes e Otimização*  
 - **Pytest** → Framework para testes automatizados.  
-- **Load Testing** → Garantia de desempenho sob alta demanda.  
+- **Locust** → Testes de carga/performance.  
 
 ---
 
@@ -42,34 +43,37 @@ O **TextAI_API** é uma **API especializada em processamento de textos**, capaz 
  │   ├── endpoints/     # Lógica dos endpoints
  │   ├── models/        # Modelos de dados
  │   ├── services/      # Processamento de NLP e lógica de negócios
- │   ├── auth/         # Autenticação via JWT e OAuth2
+ │   ├── auth/          # Autenticação via JWT e OAuth2
  │   ├── caching/       # Configuração de Redis
  │   ├── tests/         # Testes unitários e de integração
  │   ├── main.py        # Arquivo principal do FastAPI
  ├── 📂 docs/           # Documentação técnica
+ ├── 📂 database/       # Scripts de banco de dados
  ├── 📜 README.md       # Documento de apresentação do projeto
- ├── 📜 LICENSE        # Licença de código aberto
- ├── 📜 .gitignore     # Arquivos que devem ser ignorados no repositório
- ```  
+ ├── 📜 LICENSE         # Licença de código aberto
+ ├── 📜 .gitignore      # Arquivos que devem ser ignorados no repositório
+ ├── requirements.txt   # Dependências do projeto
+ ├── locustfile.py      # Script de teste de carga
+```  
 
 ---
 
 ## ✅ Checklist de Desenvolvimento  
 
-- [ ] **Planejamento**  
-  - [ ] Definir requisitos e funcionalidades principais.  
-  - [ ] Mapear fluxos de análise de texto e processamento NLP.  
-- [ ] **Configuração do Ambiente**  
-  - [ ] Instalar dependências do Python e FastAPI.  
-  - [ ] Configurar banco de dados e sistema de cache.  
-  - [ ] Implementar autenticação via OAuth2 ou JWT.  
-- [ ] **Desenvolvimento do Back-end**  
-  - [ ] Criar endpoints para análise de sentimentos e resumos automáticos.  
-  - [ ] Desenvolver lógica de classificação de textos com NLP.  
-  - [ ] Implementar integração com modelos pré-treinados via Hugging Face.  
-- [ ] **Testes e Otimizações**  
-  - [ ] Implementar caching com Redis para consultas rápidas.  
-  - [ ] Criar testes unitários e de integração com Pytest.  
+- [x] **Planejamento**  
+  - [x] Definir requisitos e funcionalidades principais.  
+  - [x] Mapear fluxos de análise de texto e processamento NLP.  
+- [x] **Configuração do Ambiente**  
+  - [x] Instalar dependências do Python e FastAPI.  
+  - [x] Configurar banco de dados e sistema de cache.  
+  - [x] Implementar autenticação via OAuth2 ou JWT.  
+- [x] **Desenvolvimento do Back-end**  
+  - [x] Criar endpoints para análise de sentimentos, resumos automáticos e classificação.  
+  - [x] Implementar integração com modelos pré-treinados via Hugging Face.  
+- [x] **Testes e Otimizações**  
+  - [x] Implementar caching com Redis para consultas rápidas.  
+  - [x] Criar testes unitários e de integração com Pytest.  
+  - [x] Realizar testes de carga/performance (Locust).  
 - [ ] **Deploy e Integração**  
   - [ ] Configurar CI/CD para deploy automatizado.  
   - [ ] Realizar testes finais de performance e escalabilidade.  
@@ -80,7 +84,7 @@ O **TextAI_API** é uma **API especializada em processamento de textos**, capaz 
 
 ### **Pré-requisitos**  
 Antes de iniciar, certifique-se de ter instalado:  
-- [Python](https://www.python.org/downloads/)  
+- [Python 3.8+](https://www.python.org/downloads/)  
 - [FastAPI](https://fastapi.tiangolo.com/)  
 - [PostgreSQL](https://www.postgresql.org/download/)  
 - [Redis](https://redis.io/download)  
@@ -88,24 +92,46 @@ Antes de iniciar, certifique-se de ter instalado:
 
 ### **1️⃣ Clonar o Repositório**  
 ```bash
-git clone https://github.com/seu-usuario/TextAI_API.git
-cd TextAI_API
+# Clone o repositório e acesse a pasta
+ git clone https://github.com/seu-usuario/TextAI_API.git
+ cd TextAI_API
 ```
 
 ### **2️⃣ Instalar Dependências**  
 ```bash
+# Ative o ambiente virtual e instale as dependências
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+# ou
+source .venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
 ### **3️⃣ Configurar Banco de Dados e Cache**  
 ```bash
-psql -U seu-usuario -d textaidb -f database/init.sql
+# Inicie o PostgreSQL e o Redis
+# Crie o banco e usuário conforme docs/comandos_projeto.md
+psql -U spostgres -d textaidb -f database/init.sql
 redis-server
 ```
 
-### **4️⃣ Executar a API**  
+### **4️⃣ Configurar variáveis de ambiente**
+- Copie o arquivo `.env.example` para `.env.local` e ajuste as variáveis conforme seu ambiente.
+
+### **5️⃣ Executar a API**  
 ```bash
 uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+### **6️⃣ Testar a API**
+- Acesse a documentação interativa: http://localhost:8000/docs
+- Execute os testes automatizados:
+```bash
+pytest tests/
+```
+- (Opcional) Execute testes de carga:
+```bash
+locust -f locustfile.py --host http://localhost:8000
 ```
 
 Agora o **TextAI_API** está pronto para análise e processamento de textos! 🚀  
@@ -144,4 +170,4 @@ Quer colaborar com o **TextAI_API**? Qualquer melhoria é bem-vinda!
 
 ## 📄 Licença  
 
-Este projeto está sob a licença MIT, permitindo colaboração aberta! 📝  
+Este projeto está sob a licença MIT, permitindo colaboração aberta! 📝
